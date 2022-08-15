@@ -1,13 +1,18 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def index():
     return "Helo,Flaskbook!"
 
 
-@app.route('/hello/<name>', methods=['GET'], endpoint='hello-endpoint')
+@app.route("/hello/<name>", methods=['GET'], endpoint='hello-endpoint')
 def hello(name):
     return f"Hello, {name}!"
+
+
+@app.route("/name/<name>")
+def show_name(name):
+    return render_template("index.html", name=name)
